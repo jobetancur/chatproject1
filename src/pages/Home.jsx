@@ -49,8 +49,12 @@ const Home = () => {
       })
       setMsgs(msgs)
     })
+
+    //Petición del último mensaje entre el usuario logueado y el usuario seleccionado.
     const docSnap = await getDoc(doc(db, 'lastMsg', id))
-    if (docSnap.data()?.from !== user1) {
+    //Si el ultimo mensaje existe y el mensaje está en el usuario seleccionado.
+    if (docSnap.data() && docSnap.data().from !== user1) {
+      //Actualiza el ultimo mensaje en doc, sete el unread por false.
       await updateDoc(doc(db, 'lastMsg', id), {
         unread: false
       })
