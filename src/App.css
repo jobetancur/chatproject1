@@ -162,10 +162,9 @@ nav {
     margin-left: 10px;
   }
   .avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 1px solid var(--color-4);
+    width: 30px;
+    height: 27px;
+    border-radius: 5px;
   }
   .user_status {
     width: 10px;
@@ -195,7 +194,7 @@ nav {
   .message_form {
     position: absolute;
     bottom: 0;
-    left: 20%;
+    left: 15%;
     width: 100%;
     height: 30px;
     display: flex;
