@@ -1,24 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import { Routes, Route } from 'react-router-dom'
+import Home from './pages/Home';
+import NavBar from './components/NavBar';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import AuthProvider from './context/auth';
+import PrivateRoutes from './components/PrivateRoutes';
+import { useState } from 'react';
+import Profile from './pages/Profile';
 
 function App() {
+
+  const [isLogged, setIsLogged] = useState(false)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <NavBar/>
+      <Routes>
+        <Route path='/register' element={<Register/>}/>
+        <Route path='/login' element={<Login setIsLogged={setIsLogged}/>}/>
+        {/* Rutas protegidas a continuación: */}
+        <Route element={<PrivateRoutes isLogged={isLogged} />} >
+          <Route path='/' element={<Home/>}/>
+          <Route path='/profile' element={<Profile/>}/>
+        </Route>
+      </Routes>
+    </AuthProvider>
   );
 }
 
