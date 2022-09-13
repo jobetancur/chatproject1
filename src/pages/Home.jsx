@@ -14,8 +14,18 @@ const Home = () => {
   const [text, setText] = useState('')
   const [img, setImg] = useState('')
   const [msgs, setMsgs] = useState([])
+  const [userLogged, setUserLogged] = useState()
 
   const user1 = auth.currentUser.uid
+
+  useEffect(() => {
+    getDoc(doc(db, 'users', auth.currentUser.uid)).then(docSnap => {
+            if(docSnap.exists){
+                setUserLogged(docSnap.data())
+            }
+        });
+  }, [])
+  
 
   useEffect(() => {
     const usersRef = collection(db, 'users')
@@ -107,6 +117,7 @@ const Home = () => {
               selectUser={selectUser}
               user1={user1}
               chat={chat}
+              userLogged={userLogged}
             />
           )}  
         </div>
@@ -127,7 +138,13 @@ const Home = () => {
                     :
                     null}      
             </div>
-            <MessageForm handleSubmit={handleSubmit} text={text} setText={setText} setImg={setImg} />    
+              <MessageForm
+                handleSubmit={handleSubmit}
+                text={text}
+                setText={setText}
+                setImg={setImg}  
+                  
+              />    
             </>
               :
             <div>
