@@ -200,6 +200,14 @@ nav {
     text-align: center;
     border-bottom: 2px solid var(--color-6);
   }
+  .user_selected1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .user_selected1 img {
+    margin-right: 10px;
+  } 
   .no_conv {
     font-size: 20px;
     color: var(--color-4);

@@ -106,6 +106,8 @@ const Home = () => {
     setText('')
   }
 
+  console.log(chat);
+
   return (
     <div>
       <div className="home_container">
@@ -125,7 +127,8 @@ const Home = () => {
           {
             chat ?
             <>
-            <div className='messages_user'>
+            <div className='messages_user user_selected1' >
+              <img src={chat.avatar} alt="" className='avatar' />
               <h3> {chat.name} </h3>    
             </div>
             <div className="messages">
