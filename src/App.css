@@ -176,9 +176,9 @@ nav {
     margin-left: 10px;
   }
   .avatar {
-    width: 30px;
-    height: 27px;
-    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
   }
   .user_status {
     width: 10px;

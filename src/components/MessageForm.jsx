@@ -1,23 +1,27 @@
-import React, { useState } from 'react'
-import useUsersData from '../hooks/useUsersData'
+import React from 'react'
 import Attachment from '../svg/Attachment'
+import emailjs from '@emailjs/browser';
 
-const MessageForm = ({ handleSubmit, text, setText, setImg, setChangeEmail, changeEmail }) => {
+const MessageForm = ({ handleSubmit, text, setText, setImg, userChat, userLogged }) => {
 
-  const { emailUserLogged, emailUser } = useUsersData()
-  
-  
-
-  const changeState = () => {
-    if (changeEmail === false) {
-      setChangeEmail(true)
-    } else {
-      setChangeEmail(false)
-    }
+  const sendEmail = () => {
+    
+    emailjs.sendForm('service_ufsgnqc', 'template_zzyfmee', 'form', 'YF23lBilOvmM5MuhY')
+      .then((result) => {
+          console.log('SUCCESS!', result.status, result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
   }
- 
+  
   return (
     <form className='message_form' onSubmit={handleSubmit} >
+      <div style={{display: 'none'}} id='form' >
+          <input type="text" name='user_name' value={userLogged.name}/>
+          <input type="text" name='user_email' value={userLogged.email}/>
+          <input type="text" name='user_message' value={`Tienes un nuevo mensaje sin leer: ${text}`}/>
+          <input type="text" name='user_reply' value={userChat.email} />
+        </div>
         <label htmlFor="img">
             <Attachment/>      
         </label>
@@ -36,7 +40,7 @@ const MessageForm = ({ handleSubmit, text, setText, setImg, setChangeEmail, chan
                 onChange={(e) => setText(e.target.value)} />
         </div>
         <div>
-          <button className='btn' onClick={changeState} >Send</button>    
+          <button className='btn' onClick={sendEmail} >Send</button>    
         </div>  
     </form>
   )

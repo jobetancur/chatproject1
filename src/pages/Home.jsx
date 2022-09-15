@@ -6,7 +6,6 @@ import User from '../components/User'
 import MessageForm from '../components/MessageForm'
 import { ref, getDownloadURL, uploadBytes } from 'firebase/storage'
 import Message from '../components/Message'
-import useEmailNotification from '../hooks/useEmailNotification'
 
 const Home = () => {
 
@@ -18,8 +17,6 @@ const Home = () => {
   const [userLogged, setUserLogged] = useState()
   const [changeEmail, setChangeEmail] = useState(false)
 
-  const {email} = useEmailNotification(changeEmail)
-
   const user1 = auth.currentUser.uid
 
   useEffect(() => {
@@ -29,7 +26,6 @@ const Home = () => {
             }
         });
   }, [])
-  
 
   useEffect(() => {
     const usersRef = collection(db, 'users')
@@ -122,7 +118,6 @@ const Home = () => {
               user1={user1}
               chat={chat}
               userLogged={userLogged}
-              emailBoolean={email}
             />
           )}  
         </div>
@@ -149,7 +144,9 @@ const Home = () => {
                 setText={setText}
                 setImg={setImg}  
                 setChangeEmail={setChangeEmail}
-                changeEmail={changeEmail}  
+                changeEmail={changeEmail}
+                userLogged={userLogged}
+                userChat={chat}  
               />    
             </>
               :
