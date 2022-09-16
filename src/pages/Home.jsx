@@ -106,13 +106,11 @@ const Home = () => {
     setText('')
   }
 
-  console.log(chat);
-
   return (
     <div>
       <div className="home_container">
         <div className="users_container">
-          {users.map(user =>
+          {users?.map(user => 
             <User
               key={user.id}
               user={user}

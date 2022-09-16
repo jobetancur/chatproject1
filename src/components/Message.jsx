@@ -11,14 +11,14 @@ const Message = ({ msg, user1 }) => {
 
   return (
     <div className={`message_wrapper ${msg.from === user1 ? 'own' : ''}`} ref={scrollRef} >
-        <p className={msg.from === user1 ? 'me' : 'friend'} >
-            {msg.media ? <img src={msg.media} alt={msg.text} /> : null}
-              {msg.text}
-            <br />
-            <small>
-                <Moment fromNow>{msg.createdAt.toDate()}</Moment>
-            </small>  
-        </p>
+      <p className={msg.from === user1 ? 'me' : 'friend'} >
+        {msg.media ? <img src={msg.media} alt={msg.text} /> : null}
+        {msg.text}
+        <br />
+        <small>
+          <Moment fromNow>{msg.createdAt.toDate()}</Moment>
+        </small>     
+      </p>
     </div>
   )
 }
